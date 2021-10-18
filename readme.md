@@ -1,4 +1,4 @@
-# Kameo 🎬 🎟️ ![Univ Lorriane](./Logo_Univ.png)
+# Kameo 🎬 🎟️ ![Univ Lorraine](./Logo_Univ.png)
 
 ![IUT Metz Project 2020](https://img.shields.io/badge/IUT%20Metz-2020-95a5a6.svg)
 
@@ -7,14 +7,14 @@
 Kameo is a cinema ticket buying app. 🎞️ it tak all principle of a cinema website
 like [kinepolis](https://kinepolis.com)
 
-It is used as an exemple distributed application cours for the university of Lorraine
+It is used as an example distributed application course for the university of Lorraine
 
-Each branch explain one priciple :
+Each branch explain one principle :
 
 <table>
   <tr>
     <td><b>Main</b></td>
-    <td>it has only business objects as documentation and <code>dummy.txt</code> for the fron and the back</td>
+    <td>it has only business objects as documentation and <code>dummy.txt</code> for the front and the back</td>
     <td></td>
   </tr>
   <tr>
@@ -30,7 +30,7 @@ Each branch explain one priciple :
   <tr>
     <td><b>WebSocket-todo</b></td>
     <td>it has a document explaining the exercise of the web socket app</td>
-    <td>the goal is to add a screen to choose your place in the cinema. if a user select a place it dynamically can't be choose by a user</td>
+    <td>the goal is to add a screen to choose your place in the cinema. if a user select a place it dynamically can't be chosen by a user</td>
   </tr>
   <tr>
     <td><b>WebSocket-correction</b></td>

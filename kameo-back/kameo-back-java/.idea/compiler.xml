@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="rest" />
+        <module name="kameo-crud" />
+        <module name="kameo-utils" />
+        <module name="session-dao" />
+        <module name="film-dao" />
+        <module name="film-process" />
+        <module name="session-process" />
+        <module name="socket" />
+        <module name="graphql" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="kameo-process" target="17" />
+      <module name="run" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

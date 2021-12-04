@@ -11,27 +11,59 @@ import fr.metz.iut.common.utils.dataaccess.PersistentStorage;
  * For instance Quentin Tarantino is a director that made Kill bill and once upon a time in hollywood.
  * We can represent like in the test class {@link TestDirector}
  */
-public record Director(String id,
-                       String firstName,
-                       String lastName,
-                       Date birthdate,
-                       Date deathDate,
-                       List<Film> films) implements Person, PersistentStorage {
+public final class Director implements Person, PersistentStorage {
 
+  private final String id;
+  private final String firstName;
+  private final String lastName;
+  private final Date birthdate;
+  private final Date deathDate;
+  private final List<Film> films= new ArrayList<>();
+
+  /**
+   */
   public Director(String id, String firstName, String lastName, Date birthdate, Date deathDate) {
-    this(id, firstName, lastName, birthdate, deathDate, new ArrayList<>());
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.birthdate = birthdate;
+    this.deathDate = deathDate;
   }
 
   public Director(String id, String firstName, String lastName, Date birthdate) {
-    this(id, firstName, lastName, birthdate, null, new ArrayList<>());
+    this(id, firstName, lastName, birthdate, null);
   }
 
   public void addToFilm(final Film film) {
     films.add(film);
   }
 
-  @Override
-  public List<Film> films() {
+  public List<Film> getFilms() {
     return Collections.unmodifiableList(films);
+  }
+
+  @Override
+  public String getId() {
+    return id;
+  }
+
+  @Override
+  public String getFirstName() {
+    return firstName;
+  }
+
+  @Override
+  public String getLastName() {
+    return lastName;
+  }
+
+  @Override
+  public Date getBirthdate() {
+    return birthdate;
+  }
+
+  @Override
+  public Date getDeathDate() {
+    return deathDate;
   }
 }

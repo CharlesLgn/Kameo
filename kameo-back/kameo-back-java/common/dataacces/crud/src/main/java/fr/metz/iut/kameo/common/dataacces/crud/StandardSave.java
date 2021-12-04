@@ -12,7 +12,7 @@ final class StandardSave implements Save {
   @Override
   @SuppressWarnings("unchecked")
   public <T extends PersistentStorage> T save(T t) {
-    if (t.id() != null) {
+    if (t.getId() != null) {
       return ((DAO<T>) DAO_CACHE.get(t.getClass())).save(t);
     }
     return ((DAO<T>) DAO_CACHE.get(t.getClass())).update(t);

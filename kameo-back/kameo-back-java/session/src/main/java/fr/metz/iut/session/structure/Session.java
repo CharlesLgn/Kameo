@@ -25,23 +25,24 @@ public class Session implements PersistentStorage {
     this.film = film;
   }
 
-  public String id() {
+  @Override
+  public String getId() {
     return id;
   }
 
-  public Date sessionDate() {
+  public Date getSessionDate() {
     return sessionDate;
   }
 
-  public Room room() {
+  public Room getRoom() {
     return room;
   }
 
-  public Film film() {
+  public Film getFilm() {
     return film;
   }
 
-  public Set<Ticket> tickets() {
+  public Set<Ticket> getTickets() {
     return Collections.unmodifiableSet(tickets);
   }
 

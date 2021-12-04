@@ -3,6 +3,7 @@ package fr.metz.iut.film.structure;
 import java.util.*;
 
 import fr.metz.iut.common.utils.dataaccess.PersistentStorage;
+import lombok.Getter;
 
 /**
  * Represent a director.
@@ -13,11 +14,11 @@ import fr.metz.iut.common.utils.dataaccess.PersistentStorage;
  */
 public final class Director implements Person, PersistentStorage {
 
-  private final String id;
-  private final String firstName;
-  private final String lastName;
-  private final Date birthdate;
-  private final Date deathDate;
+  @Getter private final String id;
+  @Getter private final String firstName;
+  @Getter private final String lastName;
+  @Getter private final Date birthdate;
+  @Getter private final Date deathDate;
   private final List<Film> films= new ArrayList<>();
 
   /**
@@ -40,30 +41,5 @@ public final class Director implements Person, PersistentStorage {
 
   public List<Film> getFilms() {
     return Collections.unmodifiableList(films);
-  }
-
-  @Override
-  public String getId() {
-    return id;
-  }
-
-  @Override
-  public String getFirstName() {
-    return firstName;
-  }
-
-  @Override
-  public String getLastName() {
-    return lastName;
-  }
-
-  @Override
-  public Date getBirthdate() {
-    return birthdate;
-  }
-
-  @Override
-  public Date getDeathDate() {
-    return deathDate;
   }
 }

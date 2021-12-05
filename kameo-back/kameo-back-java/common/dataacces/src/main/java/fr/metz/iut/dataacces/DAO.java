@@ -2,8 +2,6 @@ package fr.metz.iut.dataacces;
 
 import java.util.List;
 
-import fr.metz.iut.common.utils.dataaccess.PersistentStorage;
-
 /**
  * Represent all common method to access and modify a {@link PersistentStorage persistent data}.
  */

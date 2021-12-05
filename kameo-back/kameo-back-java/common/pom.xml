@@ -7,15 +7,12 @@
         <groupId>fr.metz.iut</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <packaging>pom</packaging>
+
     <modelVersion>4.0.0</modelVersion>
     <artifactId>kameo-common</artifactId>
-    <packaging>pom</packaging>
     <modules>
         <module>dataacces</module>
         <module>utils</module>
     </modules>
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
 </project>

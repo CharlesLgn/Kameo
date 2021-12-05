@@ -4,7 +4,7 @@ import static fr.metz.iut.session.structure.type.TicketStatus.*;
 
 import java.util.*;
 
-import fr.metz.iut.common.utils.dataaccess.PersistentStorage;
+import fr.metz.iut.dataacces.PersistentStorage;
 import fr.metz.iut.session.exception.SitNotAvailableException;
 import fr.metz.iut.session.structure.type.TicketStatus;
 

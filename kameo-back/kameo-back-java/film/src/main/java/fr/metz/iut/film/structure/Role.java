@@ -1,15 +1,10 @@
 package fr.metz.iut.film.structure;
 
-import fr.metz.iut.common.utils.dataaccess.PersistentStorage;
-import lombok.*;
+import fr.metz.iut.dataacces.PersistentStorage;
 
-@Getter
-@AllArgsConstructor
-public final class Role implements PersistentStorage {
-
-  @Getter private final String character;
-  @Getter private final Film film;
-  @Getter private final Actor actor;
+public record Role(String character,
+                   Film film,
+                   Actor actor) implements PersistentStorage {
 
   @Override
   public String getId() {

@@ -1,8 +1,6 @@
 package fr.metz.iut.session.structure;
 
-import java.util.Objects;
-
-import fr.metz.iut.common.utils.dataaccess.PersistentStorage;
+import fr.metz.iut.dataacces.PersistentStorage;
 
 public final class Room implements PersistentStorage {
 

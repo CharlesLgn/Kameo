@@ -2,7 +2,7 @@ package fr.metz.iut.session.structure;
 
 import java.util.*;
 
-import fr.metz.iut.common.utils.dataaccess.PersistentStorage;
+import fr.metz.iut.dataacces.PersistentStorage;
 import fr.metz.iut.film.structure.Film;
 import fr.metz.iut.session.exception.SitNotAvailableException;
 import fr.metz.iut.session.structure.type.TicketStatus;
@@ -52,11 +52,11 @@ public class Session implements PersistentStorage {
   }
 
   public void removeTicket(final Ticket ticket) {
-    tickets.removeIf(t -> t.id().equals(ticket.id()));
+    tickets.removeIf(t -> t.getId().equals(ticket.getId()));
   }
 
   public void reservedPlace(final Ticket ticket) throws SitNotAvailableException {
-    if (!isSitPossible(ticket.row(), ticket.column())) {
+    if (!isSitPossible(ticket.getRow(), ticket.getColumn())) {
       throw new SitNotAvailableException();
     }
     addTicket(ticket);
@@ -69,7 +69,7 @@ public class Session implements PersistentStorage {
 
   private boolean sitNotTaken(final int row, final int column) {
     return tickets.stream()
-                  .filter(ticket -> TicketStatus.sitReserved(ticket.status()))
-                  .anyMatch(ticket -> ticket.row() == row && ticket.column() == column);
+                  .filter(ticket -> TicketStatus.sitReserved(ticket.getStatus()))
+                  .anyMatch(ticket -> ticket.getRow() == row && ticket.getColumn() == column);
   }
 }

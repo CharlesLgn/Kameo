@@ -1,35 +1,30 @@
 package fr.metz.iut.film.structure;
 
-import java.util.*;
+import fr.metz.iut.dataacces.PersistentStorage;
 
-import fr.metz.iut.common.utils.dataaccess.PersistentStorage;
-import lombok.Getter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Represent an actor.
  * An actor is a {@link Person} that have {@link Role roles} in {@link Film films}.
  */
-public final class Actor implements Person, PersistentStorage {
+public record Actor(String id,
+                    String firstName,
+                    String lastName,
+                    Date birthdate,
+                    Date deathDate,
+                    List<Role> roles) implements Person, PersistentStorage {
 
-  @Getter private final String id;
-  @Getter private final String firstName;
-  @Getter private final String lastName;
-  @Getter private final Date birthdate;
-  @Getter private final Date deathDate;
-  private final List<Role> roles = new ArrayList<>();
+  public Actor(String id, String firstName, String lastName, Date birthdate, Date deathDate) {
+    this(id, firstName, lastName, birthdate, deathDate, new ArrayList<>());
+  }
 
-  /**
-   */
-  public Actor(String id,
-               String firstName,
-               String lastName,
-               Date birthdate,
-               Date deathDate) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.birthdate = birthdate;
-    this.deathDate = deathDate;
+  @Override
+  public String getId() {
+    return id;
   }
 
   public void addToRole(final Role role) {

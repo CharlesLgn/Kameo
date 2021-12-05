@@ -7,12 +7,7 @@
         <groupId>fr.metz.iut</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
-
-    <modules>
-        <module>crud</module>
-    </modules>
 
     <artifactId>kameo-dataacces</artifactId>
     <dependencies>
@@ -21,6 +16,11 @@
             <artifactId>kameo-utils</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.10.2</version>
         </dependency>
     </dependencies>
 

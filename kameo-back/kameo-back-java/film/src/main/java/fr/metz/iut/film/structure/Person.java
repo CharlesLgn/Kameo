@@ -9,9 +9,9 @@ import java.util.Date;
  */
 public interface Person {
 
-  String getId();
-  String getFirstName();
-  String getLastName();
-  Date getBirthdate();
-  Date getDeathDate();
+  String id();
+  String firstName();
+  String lastName();
+  Date birthdate();
+  Date deathDate();
 }

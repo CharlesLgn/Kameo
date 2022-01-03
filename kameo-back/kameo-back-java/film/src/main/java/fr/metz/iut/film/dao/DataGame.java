@@ -1,13 +1,19 @@
-package fr.metz.iut.kameo.web.falsedata;
+package fr.metz.iut.film.dao;
 
-import static java.util.Arrays.asList;
+import fr.metz.iut.film.structure.Actor;
+import fr.metz.iut.film.structure.Director;
+import fr.metz.iut.film.structure.Film;
+import fr.metz.iut.film.structure.Person;
+import fr.metz.iut.film.structure.type.FilmType;
 
-import java.time.*;
-import java.util.*;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import fr.metz.iut.film.structure.*;
-import fr.metz.iut.film.structure.type.FilmType;
+import static fr.metz.iut.crud.GenerateID.generateNewId;
+import static java.util.Arrays.asList;
 
 /**
  * to have a data game.
@@ -16,14 +22,8 @@ import fr.metz.iut.film.structure.type.FilmType;
  */
 public class DataGame {
 
-  private static final AtomicInteger ID = new AtomicInteger();
-
   private static final List<Film> FILMS = new ArrayList<>();
   private static final List<Person> PEOPLE = new ArrayList<>();
-
-  public static String generateNewId() {
-    return Integer.toString(ID.getAndIncrement());
-  }
 
   static {
     Actor edwardNorton = new Actor(generateNewId(), "Edward", "Norton", LocalDate.of(1969, Month.AUGUST, 18), null);
@@ -43,14 +43,14 @@ public class DataGame {
       Lors d'un voyage d'affaires, il fait la connaissance de Tyler Durden, une sorte de gourou anarchiste et philosophe.
       Ensemble, ils fondent le Fight Club.Cercle très fermé, où ils organisent des combats clandestins et violents, destinés à évacuer l'ordre établi.""",
       FilmType.ACTION,
-      8.8);
+      "tt0137523");
     Film babylon = new Film(generateNewId(),
       "Babylon",
       LocalDate.of(2022, Month.DECEMBER, 25),
       damienChazelle,
       "Un drame situé à Hollywood, durant l'apparition du cinéma parlant.",
       FilmType.ROMANCE,
-      -1);
+      "tt10640346");
 
     FILMS.addAll(asList(fightClub, babylon));
     PEOPLE.addAll(asList(edwardNorton, bradPitt, damienChazelle, davidFincher));

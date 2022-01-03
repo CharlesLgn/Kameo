@@ -1,65 +1,49 @@
 package fr.metz.iut.kameo.web.rest.resource;
 
-import java.util.List;
-
+import fr.metz.iut.crud.Delete;
+import fr.metz.iut.crud.Load;
+import fr.metz.iut.crud.Save;
+import fr.metz.iut.film.structure.Film;
+import fr.metz.iut.kameo.web.rest.dto.FilmDTO;
+import fr.metz.iut.kameo.web.rest.dto.FilmDTOCreate;
 import org.springframework.web.bind.annotation.*;
 
-import fr.metz.iut.film.structure.*;
-import fr.metz.iut.kameo.web.falsedata.DataGame;
-import fr.metz.iut.kameo.web.rest.dto.FilmDTO;
+import java.util.List;
 
 @RestController
 public class FilmResource {
 
   @GetMapping("/film/{id}")
   public FilmDTO filmById(@PathVariable(value = "id") String id) {
-    return allFilm().stream()
-                    .filter(filmDTO -> id.equals(filmDTO.id()))
-                    .findFirst()
-                    .orElse(null);
+    return FilmDTO.toDTO(Load.get().load(Film.class, id));
   }
 
   @GetMapping("/film")
   public List<FilmDTO> allFilm() {
-    return DataGame.getFilms().stream().map(FilmDTO::toDTO).toList();
+    return Load.get().loadAll(Film.class)
+               .stream()
+               .map(FilmDTO::toDTO)
+               .toList();
   }
 
   @PostMapping("/film")
-  public FilmDTO createFilm(@RequestBody FilmDTO film) {
-    return addFilm(DataGame.generateNewId(), film);
+  public FilmDTO createFilm(@RequestBody FilmDTOCreate film) {
+    return FilmDTO.toDTO(Save.get().save(film.toFilm()));
   }
 
-  @PutMapping("/film/{id")
-  public FilmDTO replaceFilm(@PathVariable(value = "id") String id, @RequestBody FilmDTO film) {
-    deleteFilm(id);
-    return addFilm(id, film);
+  @PutMapping("/film/{id}")
+  public FilmDTO replaceFilm(@PathVariable(value = "id") String id, @RequestBody FilmDTOCreate film) {
+    return FilmDTO.toDTO(Save.get().save(film.toFilm()));
+
   }
 
-  @PatchMapping("/film/{id")
-  public FilmDTO updateFilm(@PathVariable(value = "id") String id, @RequestBody FilmDTO film) {
-    deleteFilm(id);
-    return addFilm(id, film);
+  @PatchMapping("/film/{id}")
+  public FilmDTO updateFilm(@PathVariable(value = "id") String id, @RequestBody FilmDTOCreate film) {
+    return FilmDTO.toDTO(Save.get().save(film.toFilm()));
   }
 
-  @DeleteMapping("/film/{id")
+  @DeleteMapping("/film/{id}")
   public void deleteFilm(@PathVariable(value = "id") String id) {
-    DataGame.getFilms()
-            .stream()
-            .filter(film -> film.id().equals(id))
-            .findFirst()
-            .ifPresent(DataGame.getFilms()::remove);
-  }
-
-  private FilmDTO addFilm(String id, FilmDTO filmDTO) {
-    Director director = DataGame.getPeople()
-                                .stream()
-                                .filter(Director.class::isInstance)
-                                .map(Director.class::cast)
-                                .filter(person -> filmDTO.directorId().equals(person.id()))
-                                .findFirst()
-                                .orElseThrow();
-    Film newFilm = new Film(id, filmDTO.name(), filmDTO.releaseDate(), director, filmDTO.summary(), filmDTO.typeOfFilm(), -1);
-    DataGame.getFilms().add(newFilm);
-    return FilmDTO.toDTO(newFilm);
+    Delete.get().delete(Film.class, id);
   }
 }

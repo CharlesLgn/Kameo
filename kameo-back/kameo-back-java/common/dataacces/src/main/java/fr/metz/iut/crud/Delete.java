@@ -16,6 +16,8 @@ public interface Delete {
 
   <T extends PersistentStorage> void delete(T t);
 
+  <T extends PersistentStorage> void delete(Class<T> t, String id);
+
   default <T extends PersistentStorage> void delete(T... ts) {
     Stream.of(ts).forEach(this::delete);
   }

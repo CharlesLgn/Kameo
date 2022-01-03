@@ -13,7 +13,7 @@ public record Film(String id,
                    String summary,
                    List<Role> cast,
                    FilmType typeOfFilm,
-                   double imdbNote) implements PersistentStorage {
+                   String imbdID) implements PersistentStorage {
 
   public Film {
     if (director != null) {
@@ -21,12 +21,8 @@ public record Film(String id,
     }
   }
 
-  public Film(final String id, final String name, final LocalDate releaseDate, final Director director, final String summary, final FilmType typeOfFilm, final double imdbNote) {
-    this(id, name, releaseDate, director, summary, new ArrayList<>(), typeOfFilm, imdbNote);
-  }
-
-  public Film(final String id) {
-    this(id, null, null, null, null, null, 0);
+  public Film(final String id, final String name, final LocalDate releaseDate, final Director director, final String summary, final FilmType typeOfFilm, final String imbdID) {
+    this(id, name, releaseDate, director, summary, new ArrayList<>(), typeOfFilm, imbdID);
   }
 
   @Override

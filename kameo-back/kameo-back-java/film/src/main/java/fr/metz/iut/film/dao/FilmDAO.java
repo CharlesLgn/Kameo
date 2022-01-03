@@ -14,32 +14,39 @@ class FilmDAO implements DAO<Film> {
 
   @Override
   public Film read(final Film film) {
-    System.out.println("reading film");
-    return null;
+    return read(film.id());
   }
 
   @Override
   public Film read(String id) {
-    return null;
+    return DataGame.getFilms().stream()
+                   .filter(filmDTO -> id.equals(filmDTO.id()))
+                   .findFirst()
+                   .orElse(null);
   }
 
   @Override
   public List<Film> readAll() {
-    return null;
+    return DataGame.getFilms();
   }
 
   @Override
   public Film save(Film film) {
-    throw new IllegalAccessError("you can't save a film on IMDB");
+    DataGame.getFilms().add(film);
+    return film;
   }
 
   @Override
   public Film update(Film film) {
-    throw new IllegalAccessError("you can't update a film on IMDB");
+    delete(film.id());
+    return save(film);
   }
 
   @Override
   public void delete(String id) {
-    throw new IllegalAccessError("you can't delete a film on IMDB");
+    DataGame.getFilms().stream()
+            .filter(filmDTO -> id.equals(filmDTO.id()))
+            .findFirst()
+            .ifPresent(DataGame.getFilms()::remove);
   }
 }

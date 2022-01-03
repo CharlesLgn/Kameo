@@ -25,16 +25,8 @@ public record Director(String id,
     this(id, firstName, lastName, birthdate, deathDate, new ArrayList<>());
   }
 
-  public Director(String id, String firstName, String lastName, LocalDate birthdate) {
-    this(id, firstName, lastName, birthdate, null);
-  }
-
   public void addToFilm(final Film film) {
     films.add(film);
-  }
-
-  public List<Film> getFilms() {
-    return Collections.unmodifiableList(films);
   }
 
   @Override

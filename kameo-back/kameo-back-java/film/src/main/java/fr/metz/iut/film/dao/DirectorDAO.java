@@ -14,32 +14,46 @@ class DirectorDAO implements DAO<Director> {
 
   @Override
   public Director read(final Director director) {
-    System.out.println("reading director");
-    return null;
+    return read(director.id());
   }
 
   @Override
   public Director read(String id) {
-    return null;
+    return DataGame.getPeople().stream()
+                   .filter(Director.class::isInstance)
+                   .filter(person -> id.equals(person.id()))
+                   .map(Director.class::cast)
+                   .findFirst()
+                   .orElse(null);
   }
 
   @Override
   public List<Director> readAll() {
-    return null;
+    return DataGame.getPeople().stream()
+                   .filter(Director.class::isInstance)
+                   .map(Director.class::cast)
+                   .toList();
   }
 
   @Override
   public Director save(Director director) {
-    throw new IllegalAccessError("you can't save a director on IMDB");
+    DataGame.getPeople().add(director);
+    return director;
   }
 
   @Override
   public Director update(Director director) {
-    throw new IllegalAccessError("you can't update a director on IMDB");
+    delete(director.id());
+    return save(director);
   }
 
   @Override
   public void delete(String id) {
-    throw new IllegalAccessError("you can't delete a director on IMDB");
+    DataGame.getPeople().stream()
+            .filter(Director.class::isInstance)
+            .filter(person -> id.equals(person.id()))
+            .map(Director.class::cast)
+            .findFirst()
+            .ifPresent(DataGame.getPeople()::remove);
   }
 }

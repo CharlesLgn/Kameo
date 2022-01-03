@@ -1,37 +1,33 @@
 package fr.metz.iut.kameo.web.rest.resource;
 
-import java.util.Collection;
-import java.util.List;
-
+import fr.metz.iut.crud.Load;
+import fr.metz.iut.film.structure.Actor;
+import fr.metz.iut.film.structure.Film;
 import fr.metz.iut.kameo.web.rest.dto.RoleDTO;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import fr.metz.iut.film.structure.*;
-import fr.metz.iut.kameo.web.falsedata.DataGame;
-import fr.metz.iut.kameo.web.rest.dto.FilmDTO;
+import java.util.List;
 
 @RestController
 public class RoleResource {
 
   @GetMapping("/film/{id}/cast")
   public List<RoleDTO> castByFilm(@PathVariable(value = "id") String id) {
-    return DataGame.getFilms().stream()
-                   .filter(film -> id.equals(film.id()))
-                   .map(Film::cast)
-                   .flatMap(Collection::stream)
-                   .map(RoleDTO::toDTO)
-                   .toList();
+    return Load.get().load(Film.class, id)
+               .cast()
+               .stream()
+               .map(RoleDTO::toDTO)
+               .toList();
   }
 
   @GetMapping("/actor/{id}/cast")
   public List<RoleDTO> castByActor(@PathVariable(value = "id") String id) {
-    return DataGame.getPeople().stream()
-                   .filter(Actor.class::isInstance)
-                   .map(Actor.class::cast)
-                   .filter(actor -> id.equals(actor.id()))
-                   .map(Actor::roles)
-                   .flatMap(Collection::stream)
-                   .map(RoleDTO::toDTO)
-                   .toList();
+    return Load.get().load(Actor.class, id)
+               .roles()
+               .stream()
+               .map(RoleDTO::toDTO)
+               .toList();
   }
 }

@@ -1,5 +1,5 @@
 package fr.metz.iut.kameo.web.graphql;
 
-public class GraphQl {
+public class GraphQL {
   // TODO
 }

@@ -1,16 +1,14 @@
 package fr.metz.iut.film.structure;
 
+import java.time.LocalDate;
+import java.util.*;
+
 import fr.metz.iut.dataacces.PersistentStorage;
 import fr.metz.iut.film.structure.type.FilmType;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
 public record Film(String id,
                    String name,
-                   Date releaseDate,
+                   LocalDate releaseDate,
                    Director director,
                    String summary,
                    List<Role> cast,
@@ -23,7 +21,7 @@ public record Film(String id,
     }
   }
 
-  public Film(final String id, final String name, final Date releaseDate, final Director director, final String summary, final FilmType typeOfFilm, final double imdbNote) {
+  public Film(final String id, final String name, final LocalDate releaseDate, final Director director, final String summary, final FilmType typeOfFilm, final double imdbNote) {
     this(id, name, releaseDate, director, summary, new ArrayList<>(), typeOfFilm, imdbNote);
   }
 

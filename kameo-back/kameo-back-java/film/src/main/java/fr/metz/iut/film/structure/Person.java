@@ -1,6 +1,6 @@
 package fr.metz.iut.film.structure;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Represent a person.
@@ -12,6 +12,6 @@ public interface Person {
   String id();
   String firstName();
   String lastName();
-  Date birthdate();
-  Date deathDate();
+  LocalDate birthdate();
+  LocalDate deathDate();
 }

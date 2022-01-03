@@ -2,6 +2,7 @@ package fr.metz.iut.film.structure;
 
 import fr.metz.iut.dataacces.PersistentStorage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -14,11 +15,11 @@ import java.util.List;
 public record Actor(String id,
                     String firstName,
                     String lastName,
-                    Date birthdate,
-                    Date deathDate,
+                    LocalDate birthdate,
+                    LocalDate deathDate,
                     List<Role> roles) implements Person, PersistentStorage {
 
-  public Actor(String id, String firstName, String lastName, Date birthdate, Date deathDate) {
+  public Actor(String id, String firstName, String lastName, LocalDate birthdate, LocalDate deathDate) {
     this(id, firstName, lastName, birthdate, deathDate, new ArrayList<>());
   }
 
@@ -27,8 +28,8 @@ public record Actor(String id,
     return id;
   }
 
-  public void addToRole(final Role role) {
-    roles.add(role);
+  public void addToRole(final Film film, final String role) {
+    roles.add(new Role(role, film, this));
   }
 
   public List<Role> getRoles() {

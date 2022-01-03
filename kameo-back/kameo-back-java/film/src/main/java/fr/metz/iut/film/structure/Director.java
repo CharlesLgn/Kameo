@@ -2,6 +2,7 @@ package fr.metz.iut.film.structure;
 
 import fr.metz.iut.dataacces.PersistentStorage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -16,15 +17,15 @@ import java.util.List;
 public record Director(String id,
                        String firstName,
                        String lastName,
-                       Date birthdate,
-                       Date deathDate,
+                       LocalDate birthdate,
+                       LocalDate deathDate,
                        List<Film> films) implements Person, PersistentStorage {
 
-  public Director(String id, String firstName, String lastName, Date birthdate, Date deathDate) {
+  public Director(String id, String firstName, String lastName, LocalDate birthdate, LocalDate deathDate) {
     this(id, firstName, lastName, birthdate, deathDate, new ArrayList<>());
   }
 
-  public Director(String id, String firstName, String lastName, Date birthdate) {
+  public Director(String id, String firstName, String lastName, LocalDate birthdate) {
     this(id, firstName, lastName, birthdate, null);
   }
 

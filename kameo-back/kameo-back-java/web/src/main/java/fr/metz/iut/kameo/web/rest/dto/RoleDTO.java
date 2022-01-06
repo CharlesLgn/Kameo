@@ -1,15 +1,11 @@
 package fr.metz.iut.kameo.web.rest.dto;
 
-import java.time.LocalDate;
-
-import fr.metz.iut.film.structure.*;
-import fr.metz.iut.film.structure.type.FilmType;
+import fr.metz.iut.film.structure.Role;
 
 public record RoleDTO(String character,
-                      String filmId,
-                      String actorId) {
+                      FilmReferenceDTO film) {
 
-  public static RoleDTO toDTO(Role role) {
-    return new RoleDTO(role.character(), role.film().id(), role.actor().id());
+  public RoleDTO(Role role) {
+    this(role.character(), new FilmReferenceDTO(role.film()));
   }
 }

@@ -28,8 +28,8 @@ public record Actor(String id,
     return id;
   }
 
-  public void addToRole(final Film film, final String role) {
-    roles.add(new Role(role, film, this));
+  public void addToRole(Role role) {
+    roles.add(role);
   }
 
   public List<Role> getRoles() {

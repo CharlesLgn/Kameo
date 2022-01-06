@@ -1,8 +1,8 @@
 package fr.metz.iut.kameo.web.rest.dto;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
+import fr.metz.iut.film.structure.Director;
 import fr.metz.iut.film.structure.Film;
 import fr.metz.iut.film.structure.type.FilmType;
 import org.springframework.web.client.RestTemplate;
@@ -10,22 +10,41 @@ import org.springframework.web.client.RestTemplate;
 public record FilmDTO(String id,
                       String name,
                       LocalDate releaseDate,
-                      String directorId,
+                      DirectorReferenceDTO director,
                       String summary,
                       FilmType typeOfFilm,
-                      String imageUrl) {
+                      String imageUrl,
+                      CastReferenceDTO cast) {
 
-  public FilmDTO(final String name, final LocalDate releaseDate, final String directorId, final String summary, final FilmType typeOfFilm) {
-    this(null, name, releaseDate, directorId, summary, typeOfFilm, null);
+  public FilmDTO(Film film) {
+    this(film.id(),
+      film.name(),
+      film.releaseDate(),
+      new DirectorReferenceDTO(film.director()),
+      film.summary(),
+      film.typeOfFilm(),
+      getImageLink(film),
+      new CastReferenceDTO(film));
   }
 
-  public static FilmDTO toDTO(Film film) {
-    var restTemplate = new RestTemplate();
-    //var ibdb = restTemplate.getForEntity("https://imdb-api.com/en/API/Title/k_awobkj28/" + film.imbdID(), ImdbImage.class);
-    //var image = ibdb.hasBody() ? Objects.requireNonNull(ibdb.getBody()).image() : "";
-    var image = "https://fr.web.img6.acsta.net/pictures/210/604/21060483_20131125114549726.jpg";
-    return new FilmDTO(film.id(), film.name(), film.releaseDate(), film.director().id(), film.summary(), film.typeOfFilm(), image);
+  private static String getImageLink(Film film) {
+    // var restTemplate = new RestTemplate();
+    // var ibdb = restTemplate.getForEntity("https://imdb-api.com/en/API/Title/k_awobkj28/" + film.imbdID(), ImdbImage.class);
+    // return ibdb.hasBody() ? Objects.requireNonNull(ibdb.getBody()).image() : "";
+    return "https://fr.web.img6.acsta.net/pictures/210/604/21060483_20131125114549726.jpg";
   }
 
-  private record ImdbImage(String image) {}
+  public record DirectorReferenceDTO(String id, Links links) {
+
+    public DirectorReferenceDTO(Director director) {
+      this(director.id(), new Links("/director/" + director.id(), "director", "GET"));
+    }
+  }
+
+  public record CastReferenceDTO(Links links) {
+
+    public CastReferenceDTO(Film film) {
+      this(new Links("/film/" + film.id() + "/cast", "cast", "GET"));
+    }
+  }
 }

@@ -1,9 +1,6 @@
 package fr.metz.iut.film.dao.falseData;
 
-import fr.metz.iut.film.structure.Actor;
-import fr.metz.iut.film.structure.Director;
-import fr.metz.iut.film.structure.Film;
-import fr.metz.iut.film.structure.Person;
+import fr.metz.iut.film.structure.*;
 import fr.metz.iut.film.structure.type.FilmType;
 
 import java.lang.reflect.Array;
@@ -42,10 +39,10 @@ public class DataGame {
     BRAD_PITT, EDWARD_NORTON, KANG_HO_SONG);
 
   static {
-    EDWARD_NORTON.addToRole(FIGHT_CLUB, "Narator");
-    BRAD_PITT.addToRole(FIGHT_CLUB, "Tyle Durden");
-    BRAD_PITT.addToRole(ONCE_UPON_A_TIME_IN_HOLLYWOOD, "Cliff Booth");
-    KANG_HO_SONG.addToRole(PARASITE, "Ki Taek");
+    new Role("Narator",     FIGHT_CLUB,                    EDWARD_NORTON);
+    new Role("Tyle Durden", FIGHT_CLUB,                    BRAD_PITT);
+    new Role("Cliff Booth", ONCE_UPON_A_TIME_IN_HOLLYWOOD, BRAD_PITT);
+    new Role("Ki Taek",     PARASITE,                      KANG_HO_SONG);
   }
 
   public static List<Film> getFilms() {

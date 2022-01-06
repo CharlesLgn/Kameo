@@ -30,8 +30,8 @@ public record Film(String id,
     return Collections.unmodifiableList(cast);
   }
 
-  public void addToCast(String character, Actor actor) {
-    cast.add(new Role(character, this, actor));
+  public void addToCast(Role role) {
+    cast.add(role);
   }
 
   @Override

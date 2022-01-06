@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<title>Kameo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./css/style.css"/>
+<script src="./component/film-component.js"></script>
+<script src="./component/header-component.js"></script>
+
+<body>
+
+<header-component></header-component>
+
+<main id="films">
+
+</main>
+<footer>
+  <p>© Université de Lorraine</p>
+</footer>
+<div class="title"></div>
+
+<script>
+  function getQuery(q) {
+    return (window.location.search.match(new RegExp('[?&]' + q + '=([^&]+)')) || [, null])[1];
+  }
+
+  fetch('http://localhost:8080/film/' + getQuery("id"))
+    .then(data => data.json())
+    .then(film => {
+      console.log(film)
+    })
+</script>
+
+</body>
+</html>

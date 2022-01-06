@@ -21,8 +21,9 @@ public record FilmDTO(String id,
 
   public static FilmDTO toDTO(Film film) {
     var restTemplate = new RestTemplate();
-    var ibdb = restTemplate.getForEntity("https://imdb-api.com/en/API/Title/k_awobkj28/" + film.imbdID(), ImdbImage.class);
-    var image = ibdb.hasBody() ? Objects.requireNonNull(ibdb.getBody()).image() : "";
+    //var ibdb = restTemplate.getForEntity("https://imdb-api.com/en/API/Title/k_awobkj28/" + film.imbdID(), ImdbImage.class);
+    //var image = ibdb.hasBody() ? Objects.requireNonNull(ibdb.getBody()).image() : "";
+    var image = "https://fr.web.img6.acsta.net/pictures/210/604/21060483_20131125114549726.jpg";
     return new FilmDTO(film.id(), film.name(), film.releaseDate(), film.director().id(), film.summary(), film.typeOfFilm(), image);
   }
 

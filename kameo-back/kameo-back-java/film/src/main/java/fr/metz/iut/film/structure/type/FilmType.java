@@ -9,4 +9,6 @@ public enum FilmType {
   SCIFI,
   HISTORIC,
   DOCUMENTARY,
+  BIOGRAPHY,
+  THRILLER
 }

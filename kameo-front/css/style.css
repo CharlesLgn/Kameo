@@ -1,0 +1,95 @@
+:root {
+    --body-bg:#263238;
+    --title-bg-color:#000a12;
+    --card-bg-color: #FFFFFF;
+    --card-title-bg-color: #000a12;
+    --card-color: #FFFFFF;
+}
+
+body {
+    margin: auto;
+    padding: 0;
+    background-color: var(--body-bg);
+}
+
+main {
+    font-family: "Twemoji Awesome", serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+film-component {
+    transition: 0.3s;
+    padding: 0;
+    width: 300px;
+    margin: 10px 20px;
+    color: var(--card-color);
+    background-color: var(--card-bg-color);
+}
+
+film-component:hover {
+    width: 310px;
+    margin: 10px 20px 10px 10px;
+}
+a {
+    width: 300px;
+    height: 400px;
+    transition: 0.3s;
+    text-decoration: none;
+    margin: 0;
+    color: var(--card-color);
+    background-color: var(--card-bg-color);
+}
+
+a:hover {
+    box-shadow: 5px 5px 5px #c3c1c1;
+}
+
+a p {
+    margin: 0;
+    padding: 10px;
+    line-height: 1.4;
+}
+
+a h2 {
+    transition: 0.3s;
+    margin: 0;
+    padding: 10px;
+    background-color: var(--card-title-bg-color);
+    text-align: center;
+    font-weight: bold;
+}
+
+p {
+    color: black;
+}
+
+header, header h1 {
+    margin:  0;
+    padding: 5px;
+    background-color: var(--title-bg-color);
+    color: aliceblue;
+}
+
+
+header, footer {
+    text-align: center;
+}
+footer p {
+    color: darkgrey;
+}
+
+.content {
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.foot {
+    max-width: 300px;
+    text-align: justify;
+}

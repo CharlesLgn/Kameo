@@ -2,6 +2,7 @@ package fr.metz.iut.film.dao;
 
 import fr.metz.iut.dataacces.AccessForObject;
 import fr.metz.iut.dataacces.DAO;
+import fr.metz.iut.film.dao.falseData.DataGame;
 import fr.metz.iut.film.structure.Director;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  * DAO of {@link Director}
  */
 @AccessForObject(type = Director.class)
-class DirectorDAO implements DAO<Director> {
+public class DirectorDAO implements DAO<Director> {
 
   @Override
   public Director read(final Director director) {

@@ -10,7 +10,7 @@ import java.util.List;
  * DAO of {@link Role}
  */
 @AccessForObject(type = Role.class)
-class RoleDAO implements DAO<Role> {
+public class RoleDAO implements DAO<Role> {
 
   @Override
   public Role read(final Role role) {

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<title>Kameo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./css/style.css"/>
+<script src="./component/film-component.js"></script>
+<script src="./component/header-component.js"></script>
+
+<body>
+
+<header-component></header-component>
+
+<main id="films">
+
+</main>
+<footer>
+  <p>© Université de Lorraine</p>
+</footer>
+<div class="title"></div>
+
+<script>
+  fetch('http://localhost:8080/film').then(data => data.json())
+    .then(data => {
+      data.forEach(film => document.querySelector("#films").innerHTML += `<film-component id="`+film.id+`"></film-component>`)
+    }).catch(reason => {
+    document.querySelector("#films").innerHTML += `<p style="color:red">problème survenu sur le serveur</p>`
+  })
+</script>
+
+</body>
+</html>

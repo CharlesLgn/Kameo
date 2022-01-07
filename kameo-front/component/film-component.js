@@ -4,7 +4,8 @@ class FilmComponent extends HTMLElement {
     super()
     this.shadow = this.attachShadow({mode: 'open'})
     this.shadow.innerHTML = `
-                <link rel="stylesheet" href="../css/style.css"/>
+                <link rel="stylesheet" href="css/style.css"/>
+                <script src="component/progress-circle.js"></script>
                 <a href="." id="film-link">
                   <h2 id="film-name"></h2>
                   <div id="film-image" class="content"></div>

@@ -26,7 +26,7 @@
       data.forEach(film => films += `<film-component id="`+film.id+`"></film-component>`)
       document.querySelector("#films").innerHTML += films
     }).catch(reason => {
-    document.querySelector("#films").innerHTML += `<p style="color:red">problème survenu sur le serveur</p>`
+    document.querySelector("#films").innerHTML += `<p style="color:darkred; font-weight: bolder">problème survenu sur le serveur</p>`
   })
 </script>
 

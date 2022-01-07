@@ -22,7 +22,9 @@
 <script>
   fetch('http://localhost:8080/film').then(data => data.json())
     .then(data => {
-      data.forEach(film => document.querySelector("#films").innerHTML += `<film-component id="`+film.id+`"></film-component>`)
+      let films = ""
+      data.forEach(film => films += `<film-component id="`+film.id+`"></film-component>`)
+      document.querySelector("#films").innerHTML += films
     }).catch(reason => {
     document.querySelector("#films").innerHTML += `<p style="color:red">problème survenu sur le serveur</p>`
   })

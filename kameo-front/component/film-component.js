@@ -6,10 +6,8 @@ class FilmComponent extends HTMLElement {
     this.shadow.innerHTML = `
                 <link rel="stylesheet" href="../css/style.css"/>
                 <a href="." id="film-link">
-                  <h2 id="film-name">Exercice 1</h2>
-                  <div class="content">
-                    <img id="film-image" alt="picture" height="245"/>
-                  </div>
+                  <h2 id="film-name"></h2>
+                  <div id="film-image" class="content"></div>
                   <div class="foot">
                     <p id="film-summary"></p>
                   </div>
@@ -18,7 +16,7 @@ class FilmComponent extends HTMLElement {
 
   connectedCallback() {
     const id = this.getAttribute("id")
-    this.shadow.querySelector("#film-link").setAttribute("href", "./film.html?id="+id)
+    this.shadow.querySelector("#film-link").setAttribute("href", "./film.html?id=" + id)
     fetch('http://localhost:8080/film/' + id)
       .then(data => data.json())
       .then(data => {
@@ -28,7 +26,7 @@ class FilmComponent extends HTMLElement {
         let name = data["name"].length > 20
           ? data["name"].substring(0, 20) + "…"
           : data["name"]
-        this.shadow.querySelector("#film-image").setAttribute("src", data["imageUrl"])
+        this.shadow.querySelector("#film-image").innerHTML = `<img id="film-image" alt="picture" height="245" src="` + data["imdb"].image + `"/>`
         this.shadow.querySelector("#film-name").innerHTML = name
         this.shadow.querySelector("#film-summary").innerHTML = sumary
       })

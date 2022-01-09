@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<title>Kameo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./css/style.css"/>
+<script src="./component/film-component-graphql.js"></script>
+<script src="./component/header-component.js"></script>
+
+<body>
+
+<header-component></header-component>
+
+<main id="films">
+
+</main>
+<footer>
+    <p>© Université de Lorraine</p>
+</footer>
+<div class="title"></div>
+
+<script>
+    myHeaders = new Headers({
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+    });
+    fetch('http://localhost:8080/graphql', {
+        method: 'POST',
+        headers: myHeaders,
+        body: `{
+      "operationName" : "",
+      "query" : "query {\\nfilms {\\n id\\n name\\n summary\\n imdb {\\n image\\n}\\n}\\n}",
+      "variables": ""
+    }`
+    }).then(data => data.json())
+        .then(data => {
+            console.log(data.data.films)
+            let films = ""
+            data.data.films.forEach(film => films += `<film-component id="` + film.id + `"
+                                                                    name="` + film.name + `"
+                                                                   image="` + film.imdb.image + `"
+                                                                 summary="` + film.summary + `"></film-component>`)
+            document.querySelector("#films").innerHTML += films
+        }).catch(reason => {
+        document.querySelector("#films").innerHTML += `<p style="color:darkred; font-weight: bolder">problème survenu sur le serveur</p>`
+    })
+</script>
+
+</body>
+</html>

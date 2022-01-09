@@ -1,0 +1,87 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+interface Person {
+    id: Int!
+    firstName: String!
+    lastName: String!
+    dateOfBirth: Date!
+    dateOfDeath: Date
+}
+
+type Actor implements Person {
+    id: Int!
+    firstName: String!
+    lastName: String!
+    dateOfDeath: Date
+    dateOfBirth: Date!
+    role: [Role!]
+}
+
+type Director implements Person {
+    id: Int!
+    firstName: String!
+    lastName: String!
+    dateOfBirth: Date!
+    dateOfDeath: Date
+    films: [Film]!
+}
+
+type Film {
+    id: Int!
+    name: String!
+    releaseDate: Date
+    director: Director!
+    summary: String!
+    cast: [Role]!
+    type: FilmType!
+    imdb: Imdb
+}
+
+type Imdb {
+    image: String
+    note: Float
+}
+
+enum FilmType {
+    ACTION
+    ROMANCE
+    SCIFI
+    HISTORIC
+    DOCUMENTARY
+    BIOGRAPHY
+    THRILLER
+}
+
+type Mutation {
+    createFilm(film: FilmInput!): Film
+}
+
+type Query {
+    actor(id: Int!): Actor
+    director(id: Int!): Director
+    film(id: Int!): Film
+    films: [Film]
+}
+
+type Role {
+    actor: Actor!
+    personnage: String!
+}
+
+input FilmInput {
+    name: String
+    releaseDate: Date
+    directorId: String
+    summary: String
+    typeOfFilm: FilmType
+    imdbID: String
+}
+
+
+"An RFC-3339 compliant Full Date Scalar"
+scalar Date

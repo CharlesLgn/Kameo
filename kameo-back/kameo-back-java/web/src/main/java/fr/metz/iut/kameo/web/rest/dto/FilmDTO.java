@@ -43,12 +43,6 @@ public record FilmDTO(String id,
     }
   }
 
-  private static ImdbDTO getImageLink(Film film) {
-    var restTemplate = new RestTemplate();
-    var ibdb = restTemplate.getForEntity("https://imdb-api.com/en/API/Title/k_awobkj28/" + film.imbdID(), ImdbDTO.class);
-    return ibdb.hasBody() ? Objects.requireNonNull(ibdb.getBody()) : null;
-  }
-
   private static final class ImdbDTO {
 
     private final String image;
